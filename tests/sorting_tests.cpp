@@ -13,6 +13,10 @@ namespace {
 struct TestCase {
   std::vector<int> test_vector;
   std::vector<int> out_vector;
+  void clean() {
+    test_vector.clear();
+    out_vector.clear();
+  }
   void print() {
     std::for_each(test_vector.begin(), test_vector.end(),
                   [](int el) { std::cout << el << ' '; });
@@ -23,6 +27,8 @@ struct TestCase {
   }
 };
 
+/*
+ * Function for tests loading
 void Load(std::string filename, std::vector<int>& test_vector) {
   test_vector.clear();
   std::ifstream fout(filename, std::ios::app);
@@ -33,6 +39,7 @@ void Load(std::string filename, std::vector<int>& test_vector) {
   }
   fout.close();
 }
+ */
 }  // namespace
 
 TEST(Merging, merging) {
@@ -114,7 +121,6 @@ TEST(InsertionSort, insertionsort) {
 
 // Снизу тесты для оценки времени алгоритмов
 
-// gives strange allocation error, valgrind does not detect it
 /*
 TEST(Comparing, Quicksort) {
   TestCase test;
@@ -128,8 +134,8 @@ TEST(Comparing, Quicksort) {
     time.end();
     time.log("../tests/log/quicksort_log.txt");
   }
+  test.clean();
 }
-*/
 
 TEST(Comparing, Heapsort) {
   TestCase test;
@@ -142,6 +148,7 @@ TEST(Comparing, Heapsort) {
     time.end();
     time.log("../tests/log/heapsort_log.txt");
   }
+  test.clean();
 }
 
 
@@ -157,6 +164,7 @@ TEST(Comparing, MergeSort) {
     time.end();
     time.log("../tests/log/mergesort_log.txt");
   }
+  test.clean();
 }
 
 
@@ -171,9 +179,9 @@ TEST(Comparing, InplaceMergeSort) {
     time.end();
     time.log("../tests/log/inplacemergesort_log.txt");
   }
+  test.clean();
 }
 
-/* works for too long
 TEST(Comparing, InsertionSort) {
   TestCase test;
   Timer time;
@@ -184,7 +192,6 @@ TEST(Comparing, InsertionSort) {
   time.end();
   time.log("../tests/log/insertionsort_log.txt");
 }
-*/
 
 TEST(Comparing, StableSort) {
   TestCase test;
@@ -197,6 +204,7 @@ TEST(Comparing, StableSort) {
     time.end();
     time.log("../tests/log/stablesort_log.txt");
   }
+  test.clean();
 }
 
 TEST(Comparing, Sort) {
@@ -210,4 +218,6 @@ TEST(Comparing, Sort) {
     time.end();
     time.log("../tests/log/sort_log.txt");
   }
+  test.clean();
 }
+*/
