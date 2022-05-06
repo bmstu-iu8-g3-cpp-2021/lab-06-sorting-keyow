@@ -105,18 +105,14 @@ void max_heapify(It first, It last, It current, size_t heap_size,
 }
 
 template <class It, class Compare = std::less<>>
-void make_heap(It first, It last, size_t heap_size, Compare cmp = Compare{}) {
+void heap_sort(It first, It last, Compare cmp = Compare{}) {
+  size_t heap_size = std::distance(first, last);
+
   auto mid = std::next(first, heap_size / 2 - 1);
   auto r_end = std::prev(first);
   for (auto it = mid; it != r_end; --it) {
     max_heapify(first, last, it, heap_size, cmp);
   }
-}
-
-template <class It, class Compare = std::less<>>
-void heap_sort(It first, It last, Compare cmp = Compare{}) {
-  size_t heap_size = std::distance(first, last);
-  make_heap(first, last, heap_size, cmp);
 
   for (auto it = std::prev(last); it != first; --it) {
     std::swap(*it, *first);

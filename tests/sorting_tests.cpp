@@ -2,10 +2,37 @@
 
 #include <gtest/gtest.h>
 
+#include <fstream>
 #include <list>
 #include <vector>
 
 #include "../include/sorting.h"
+#include "timer.h"
+
+namespace {
+struct TestCase {
+  std::vector<int> test_vector;
+  std::vector<int> out_vector;
+  void print() {
+    std::for_each(test_vector.begin(), test_vector.end(),
+                  [](int el) { std::cout << el << ' '; });
+  }
+  void print_output_container() {
+    std::for_each(out_vector.begin(), out_vector.end(),
+                  [](int el) { std::cout << el << ' '; });
+  }
+};
+
+void Load(std::string filename, std::vector<int>& test_vector) {
+  test_vector.clear();
+  std::ifstream fout(filename, std::ios::app);
+  int number;
+  while (!fout.eof()) {
+    fout >> number;
+    test_vector.push_back(number);
+  }
+}
+}  // namespace
 
 TEST(Merging, merging) {
   std::vector<int> v1 = {1, 5, 6};
@@ -69,9 +96,9 @@ TEST(QuickSort, quicksort) {
   EXPECT_EQ(vec, std::vector<int>(
                      {-1231, -999, -41, -12, 0, 0, 5, 13, 321, 414, 3134}));
 
-  std::vector<int> vec1 = {};
+  std::vector<int> vec1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   quick_sort(vec1.begin(), vec1.end());
-  EXPECT_TRUE(vec1.empty());
+  EXPECT_TRUE(vec1 == std::vector<int>({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}));
 }
 
 TEST(InsertionSort, insertionsort) {
@@ -84,3 +111,98 @@ TEST(InsertionSort, insertionsort) {
   EXPECT_TRUE(vec1.empty());
 }
 
+TEST(Comparing, Quicksort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    quick_sort(test.test_vector.begin(), test.test_vector.end());
+    time.end();
+    time.log("../tests/log/quicksort_log.txt");
+  }
+}
+
+TEST(Comparing, Heapsort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    heap_sort(test.test_vector.begin(), test.test_vector.end());
+    time.end();
+    time.log("../tests/log/heapsort_log.txt");
+  }
+}
+
+TEST(Comparing, MergeSort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    merge_sort(test.test_vector.begin(), test.test_vector.end(),
+               std::back_inserter(test.out_vector));
+    time.end();
+    time.log("../tests/log/mergesort_log.txt");
+  }
+}
+
+TEST(Comparing, InplaceMergeSort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    inplace_merge_sort(test.test_vector.begin(), test.test_vector.end());
+    time.end();
+    time.log("../tests/log/inplacemergesort_log.txt");
+  }
+}
+
+TEST(Comparing, InsertionSort) {
+  TestCase test;
+  Timer time;
+
+  Load("../tests/test_arr.txt", test.test_vector);
+  time.start();
+  insertion_sort(test.test_vector.begin(), test.test_vector.end());
+  time.end();
+  time.log("../tests/log/insertionsort_log.txt");
+}
+
+TEST(Comparing, StableSort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    stable_sort(test.test_vector.begin(), test.test_vector.end());
+    time.end();
+    time.log("../tests/log/stablesort_log.txt");
+  }
+}
+
+TEST(Comparing, Sort) {
+  TestCase test;
+  Timer time;
+
+  for (int i = 0; i < 100; ++i) {
+    std::cout << i + 1 << std::endl;
+    Load("../tests/test_arr.txt", test.test_vector);
+    time.start();
+    std::sort(test.test_vector.begin(), test.test_vector.end());
+    time.end();
+    time.log("../tests/log/sort_log.txt");
+  }
+}
