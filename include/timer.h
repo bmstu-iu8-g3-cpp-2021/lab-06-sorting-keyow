@@ -38,6 +38,7 @@ class Timer {
   void log(std::string filename) {
     std::ofstream fout(filename, std::ios::app);
     fout << elapsed() << std::endl;
+    fout.close();
   }
 
   void unset() {

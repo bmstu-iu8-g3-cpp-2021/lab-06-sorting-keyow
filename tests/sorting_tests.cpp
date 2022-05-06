@@ -31,6 +31,7 @@ void Load(std::string filename, std::vector<int>& test_vector) {
     fout >> number;
     test_vector.push_back(number);
   }
+  fout.close();
 }
 }  // namespace
 
@@ -117,7 +118,7 @@ TEST(Comparing, Quicksort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
@@ -131,7 +132,7 @@ TEST(Comparing, Heapsort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
@@ -145,7 +146,7 @@ TEST(Comparing, MergeSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
@@ -160,7 +161,7 @@ TEST(Comparing, InplaceMergeSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
@@ -187,7 +188,7 @@ TEST(Comparing, StableSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
@@ -201,7 +202,7 @@ TEST(Comparing, Sort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 1; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
