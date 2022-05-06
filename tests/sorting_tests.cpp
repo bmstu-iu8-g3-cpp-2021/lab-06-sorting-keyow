@@ -111,6 +111,8 @@ TEST(InsertionSort, insertionsort) {
   EXPECT_TRUE(vec1.empty());
 }
 
+// Снизу тесты для оценки времени алгоритмов
+
 TEST(Comparing, Quicksort) {
   TestCase test;
   Timer time;
@@ -168,6 +170,7 @@ TEST(Comparing, InplaceMergeSort) {
   }
 }
 
+/* works for too long
 TEST(Comparing, InsertionSort) {
   TestCase test;
   Timer time;
@@ -178,6 +181,7 @@ TEST(Comparing, InsertionSort) {
   time.end();
   time.log("../tests/log/insertionsort_log.txt");
 }
+*/
 
 TEST(Comparing, StableSort) {
   TestCase test;
