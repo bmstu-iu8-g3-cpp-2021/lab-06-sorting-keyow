@@ -31,7 +31,8 @@ Out merge_func(It first1, It last1, It first2, It last2, Out out,
   return out;
 }
 
-template <class It, class Compare = std::less<>>
+/*
+ * template <class It, class Compare = std::less<>>
 void inplace_merge_func(It first1, It mid, It last, Compare cmp = Compare{}) {
   It begin = first1;
   It first2 = mid;
@@ -47,6 +48,7 @@ void inplace_merge_func(It first1, It mid, It last, Compare cmp = Compare{}) {
   container_copy.insert(container_copy.end(), first2, last);
   std::move(container_copy.begin(), container_copy.end(), begin);
 }
+*/
 
 template <class It, class Out, class Compare = std::less<>>
 Out merge_sort(It first, It last, Out out, Compare cmp = Compare{}) {
@@ -65,7 +67,7 @@ Out merge_sort(It first, It last, Out out, Compare cmp = Compare{}) {
   merge_sort(c_begin, mid, c_begin, cmp);
   merge_sort(mid, c_end, mid, cmp);
 
-  return std::merge(c_begin, mid, mid, c_end, out, cmp);
+  return merge_func(c_begin, mid, mid, c_end, out, cmp);
 }
 
 template <class It, class Compare = std::less<>>
@@ -79,7 +81,7 @@ void inplace_merge_sort(It first, It last, Compare cmp = Compare{}) {
 
   inplace_merge_sort(first, mid, cmp);
   inplace_merge_sort(mid, last, cmp);
-  inplace_merge_func(first, mid, last, cmp);
+  std::inplace_merge(first, mid, last, cmp);
 }
 
 template <class It, class Compare = std::less<>>

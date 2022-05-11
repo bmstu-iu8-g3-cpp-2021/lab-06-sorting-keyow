@@ -28,7 +28,6 @@ struct TestCase {
 };
 
 /*
- * Function for tests loading
 void Load(std::string filename, std::vector<int>& test_vector) {
   test_vector.clear();
   std::ifstream fout(filename, std::ios::app);
@@ -120,33 +119,33 @@ TEST(InsertionSort, insertionsort) {
 }
 
 // Снизу тесты для оценки времени алгоритмов
-
 /*
 TEST(Comparing, Quicksort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     std::cout << i + 1 << std::endl;
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     quick_sort(test.test_vector.begin(), test.test_vector.end());
     time.end();
-    time.log("../tests/log/quicksort_log.txt");
+    time.log("../misc/quicksort_log.txt");
   }
   test.clean();
 }
+
 
 TEST(Comparing, Heapsort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     heap_sort(test.test_vector.begin(), test.test_vector.end());
     time.end();
-    time.log("../tests/log/heapsort_log.txt");
+    time.log("../misc/heapsort_log.txt");
   }
   test.clean();
 }
@@ -156,13 +155,13 @@ TEST(Comparing, MergeSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     merge_sort(test.test_vector.begin(), test.test_vector.end(),
                std::back_inserter(test.out_vector));
     time.end();
-    time.log("../tests/log/mergesort_log.txt");
+    time.log("../misc/mergesort_log.txt");
   }
   test.clean();
 }
@@ -172,12 +171,12 @@ TEST(Comparing, InplaceMergeSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     inplace_merge_sort(test.test_vector.begin(), test.test_vector.end());
     time.end();
-    time.log("../tests/log/inplacemergesort_log.txt");
+    time.log("../misc/inplacemergesort_log.txt");
   }
   test.clean();
 }
@@ -190,19 +189,19 @@ TEST(Comparing, InsertionSort) {
   time.start();
   insertion_sort(test.test_vector.begin(), test.test_vector.end());
   time.end();
-  time.log("../tests/log/insertionsort_log.txt");
+  time.log("../misc/insertionsort_log.txt");
 }
 
 TEST(Comparing, StableSort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     stable_sort(test.test_vector.begin(), test.test_vector.end());
     time.end();
-    time.log("../tests/log/stablesort_log.txt");
+    time.log("../misc/stablesort_log.txt");
   }
   test.clean();
 }
@@ -211,13 +210,13 @@ TEST(Comparing, Sort) {
   TestCase test;
   Timer time;
 
-  for (int i = 0; i < 1; ++i) {
+  for (int i = 0; i < 100; ++i) {
     Load("../tests/test_arr.txt", test.test_vector);
     time.start();
     std::sort(test.test_vector.begin(), test.test_vector.end());
     time.end();
-    time.log("../tests/log/sort_log.txt");
+    time.log("../misc/sort_log.txt");
   }
   test.clean();
 }
-*/
+ */
