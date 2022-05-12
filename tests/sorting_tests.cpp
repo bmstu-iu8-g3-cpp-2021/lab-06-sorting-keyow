@@ -27,7 +27,7 @@ struct TestCase {
   }
 };
 
-/*
+
 void Load(std::string filename, std::vector<int>& test_vector) {
   test_vector.clear();
   std::ifstream fout(filename, std::ios::app);
@@ -38,7 +38,6 @@ void Load(std::string filename, std::vector<int>& test_vector) {
   }
   fout.close();
 }
- */
 }  // namespace
 
 TEST(Merging, merging) {
@@ -119,7 +118,7 @@ TEST(InsertionSort, insertionsort) {
 }
 
 // Снизу тесты для оценки времени алгоритмов
-/*
+
 TEST(Comparing, Quicksort) {
   TestCase test;
   Timer time;
@@ -219,4 +218,3 @@ TEST(Comparing, Sort) {
   }
   test.clean();
 }
- */
